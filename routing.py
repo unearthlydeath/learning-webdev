@@ -25,11 +25,25 @@ def serve_html(name):
     # serve with explicit mimetype so the browser won't download it
     return send_file(path, mimetype='text/html')
 
+#main code
 
-@app.route('/')
+@app.route('/notaker')
 def index():
-    return serve_html('main.html')
+    return serve_html('landing')
 
 @app.route('/about')
 def about_page():
     return serve_html('about')
+
+@app.route('/home')
+def home_page():
+    return serve_html('home')
+
+@app.route('/login')
+def login_page():
+    return serve_html('login')
+
+
+#run server
+if (__name__ == '__main__'):
+    app.run(debug=True)
