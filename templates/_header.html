@@ -1,0 +1,23 @@
+<!-- shared header fragment -->
+<header id="site-header">
+  <a href="/">Notaker</a>
+  <nav>
+    <a href="/home" class="{% if active=='home' %}active{% endif %}">Home</a>
+    <a href="/about" class="{% if active=='about' %}active{% endif %}">About</a>
+    {% if username %}
+      <!-- when logged in show a small user menu trigger -->
+      <div class="user-menu-wrapper">
+        <a href="#" id="user-trigger">{{ username }}</a>
+        <div id="user-menu" class="user-menu" style="display:none;">
+          <a href="/settings">Settings</a>
+          <a href="/logout">Log out</a>
+        </div>
+      </div>
+    {% else %}
+      {# Don't show the Log In link when we're already on the login page #}
+      {% if active != 'login' %}
+        <a href="/login">Log In</a>
+      {% endif %}
+    {% endif %}
+  </nav>
+</header>

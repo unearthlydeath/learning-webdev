@@ -1,0 +1,164 @@
+
+/*
+  LAYOUT FOR LANDING PAGE HEADER / NAV
+  ------------------------------------
+  This section styles the top navigation bar (the `header` element).
+
+  Key ideas for beginners:
+  - position: fixed keeps the header visible at the top even when the page scrolls.
+  - display: flex lays out the brand and the nav links in a single horizontal row.
+  - z-index ensures the header sits above other content.
+  - transition makes the hide/show animation smooth.
+*/
+header {
+	/* Keep the header fixed to the top of the viewport */
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+
+	/* Visual appearance */
+	background: #0b6efd; /* blue navbar color */
+	color: white; /* text color inside the header */
+
+	/* Flexbox arranges the brand on the left and nav on the right */
+	display: flex;
+	align-items: center; /* vertically center items */
+	justify-content: space-between; /* push brand left, nav right */
+
+	/* Spacing inside the header */
+	padding: 12px 24px;
+	box-sizing: border-box; /* include padding in the element's width calculations */
+
+	/* Put the header above other content */
+	z-index: 999;
+
+	/* Transition for smooth show/hide animation */
+	transition: transform 260ms ease, opacity 260ms ease;
+}
+
+/*
+  .header-hidden
+  This class moves the header up outside of the viewport and reduces opacity.
+  We toggle this class with JavaScript to hide/show the navbar when scrolling.
+*/
+.header-hidden {
+	transform: translateY(-120%); /* move header up fully */
+	opacity: 0; /* fade out while moving */
+}
+
+
+/*
+  Brand styling
+  The first direct <a> inside header is the site brand/logo link.
+  We make it larger and bolder so it stands out.
+*/
+header > a:first-child {
+	font-size: 1.25rem;
+	color: white;
+	text-decoration: none; /* remove underline */
+	font-weight: 700;
+	margin-right: 24px; /* space between brand and nav */
+}
+
+
+/*
+  Navigation (links on the right)
+  - We use a flex container for the nav to space links evenly horizontally.
+  - `gap` defines the spacing between links.
+*/
+header nav {
+	display: flex;
+	gap: 18px;
+}
+
+/* Link appearance inside the nav */
+header nav a {
+	color: rgba(255,255,255,0.95); /* almost-white text */
+	text-decoration: none; /* no underline */
+	padding: 6px 10px; /* clickable area for each link */
+	border-radius: 6px; /* subtle rounded background on hover */
+	font-weight: 600;
+}
+
+/* Slight background on hover/focus to indicate interactivity */
+header nav a:hover,
+header nav a:focus {
+	background: rgba(255,255,255,0.08);
+}
+
+
+/*
+  Page basics
+  - Remove default browser margin so the layout starts at the very top-left.
+  - Set a readable default font stack.
+*/
+body {
+	margin: 0;
+	font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+
+/*
+  HERO / MAIN CONTENT GRID
+  ------------------------
+  We make a two-column grid: left column for text, right column for the image.
+  The image is set to take roughly half the viewport height using `height: 50vh`.
+  `vh` = viewport height; 1vh = 1% of the viewport height.
+*/
+.home-content {
+	display: grid;
+	grid-template-columns: 1fr 1fr; /* two equal columns */
+	align-items: center; /* vertically center items in each column */
+	min-height: 100vh; /* make the hero at least the full height of the screen */
+}
+
+.home-content h1 {
+	margin: 0 24px;
+	font-size: 3rem; /* large heading size - adjust as needed */
+}
+
+.home-content img {
+	width: 100%; /* make image fill its column horizontally */
+	height: 50vh; /* make the image about half the visible screen height */
+	object-fit: cover; /* crop/scale the image to fill the area nicely */
+	display: block; /* remove default inline spacing */
+}
+
+.home-content section {
+	padding: 0 24px; /* horizontal padding for text block */
+}
+
+
+/*
+  RESPONSIVE RULES
+  ----------------
+  On small screens (narrow devices), it's better to stack content vertically.
+  We change the grid to a single column and reduce the image height.
+*/
+@media (max-width: 800px) {
+	.home-content {
+		grid-template-columns: 1fr; /* single column */
+		gap: 18px; /* vertical spacing between stacked items */
+		padding-top: 64px; /* leave room for the fixed header */
+	}
+
+	.home-content img {
+		height: 40vh; /* slightly smaller on phones */
+	}
+
+	header {
+		padding: 10px 14px; /* slightly smaller header padding on small screens */
+	}
+}
+
+
+/*
+  Ensure page content doesn't sit under the fixed header
+  We add top padding to main content containers so text starts below the header.
+  Adjust the padding if you change header height.
+*/
+main, .home-content, .content {
+	padding-top: 68px;
+}
+

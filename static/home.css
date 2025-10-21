@@ -1,0 +1,13 @@
+
+/*
+	Import the shared header/navbar styles from main.css.
+	This keeps navbar appearance and behavior consistent across pages
+	and avoids duplicating the same CSS in multiple files.
+
+	If you later need page-specific styles for the home page, add them
+	below this import.
+*/
+@import url('main.css');
+
+/* Page-specific overrides for home page (add below) */
+

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home | Notaker</title>
+  <link rel="stylesheet" href="/static/main.css">
+</head>
+<body>
+  {% include '_header.html' %}
+
+  <main class="content">
+    <h1>Home</h1>
+    <p>Welcome {% if username %}{{ username }}{% else %}guest{% endif %} — this is your home page.</p>
+  </main>
+
+  <script src="/static/main.js"></script>
+</body>
+</html>
