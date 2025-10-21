@@ -41,7 +41,13 @@ def about_page():
 
 @app.route('/home')
 def home_page():
-    return render_template('home.html', username=session.get('username'), active='home')
+    # If the user is not logged in, render the home template with a flag
+    # that instructs the page to show a login call-to-action instead of
+    # personal content. This keeps the URL at /home but requires login
+    # to access user-specific data.
+    username = session.get('username')
+    requires_login = username is None
+    return render_template('home.html', username=username, active='home', requires_login=requires_login)
 
 
 @app.route('/login', methods=['GET', 'POST'])

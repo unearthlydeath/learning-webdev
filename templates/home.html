@@ -11,7 +11,14 @@
 
   <main class="content">
     <h1>Home</h1>
-    <p>Welcome {% if username %}{{ username }}{% else %}guest{% endif %} — this is your home page.</p>
+    {# If requires_login is true, show a prominent login button instead of user content #}
+    {% if requires_login %}
+      <p>You must be logged in to access your notes and settings.</p>
+      <p><a class="cta" href="/login">Log in</a></p>
+    {% else %}
+      <p>Welcome {% if username %}{{ username }}{% else %}guest{% endif %} — this is your home page.</p>
+      <p>Your personal content would appear here (notes, quick links, etc.).</p>
+    {% endif %}
   </main>
 
   <script src="/static/main.js"></script>

@@ -162,3 +162,16 @@ main, .home-content, .content {
 	padding-top: 68px;
 }
 
+/* small utility: call-to-action link style used on the home page when login is required */
+.cta {
+	display: inline-block;
+	background: #0056d6;
+	color: white;
+	padding: 8px 14px;
+	border-radius: 6px;
+	text-decoration: none;
+	font-weight: 700;
+}
+
+.cta:hover { background: #0045b3; }
+
